@@ -1,0 +1,23 @@
+graph TD
+    User[User/Browser] -->|HTTP Requests| FE[Streamlit Dashboard<br/>Port 8501]
+    FE -->|REST API Calls<br/>JSON| API[FastAPI Backend<br/>Port 8000]
+    API -->|SQL Queries| DB[(SQLite Database<br/>igs_data.db)]
+    
+    ETL[Python ETL Pipeline<br/>data_cleaning.py] -->|Reads Raw CSV| Raw[Raw Data Files<br/>/data/raw/]
+    ETL -->|Cleans & Transforms| Processed[Processed Data<br/>/data/processed/]
+    ETL -->|Loads Records| DB
+    
+    Cloud[Google Cloud Storage<br/>Bucket: igs-backup] -.->|Backup/Archive| Raw
+    Cloud -.->|Disaster Recovery| DB
+    
+    GH[GitHub Actions<br/>CI/CD] -->|Automated Testing| API
+    GH -->|Linting & Quality| FE
+    
+    style User fill:#e1f5ff
+    style FE fill:#a8daff
+    style API fill:#ffd966
+    style DB fill:#93c47d
+    style ETL fill:#ff9999
+    style Cloud fill:#d9d9d9
+    style GH fill:#b4a7d6
+

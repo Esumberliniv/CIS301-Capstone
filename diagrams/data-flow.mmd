@@ -1,0 +1,46 @@
+sequenceDiagram
+    participant User as User
+    participant GCS as Google Cloud Storage
+    participant Raw as Raw CSV Files
+    participant ETL as ETL Pipeline
+    participant DB as SQLite Database
+    participant API as FastAPI Backend
+    participant UI as Streamlit Dashboard
+    
+    Note over GCS,Raw: Data Ingestion Phase
+    GCS->>Raw: Download IGS CSV
+    Raw->>ETL: Read CSV (pandas)
+    
+    Note over ETL: Data Cleaning Phase
+    ETL->>ETL: Remove metadata rows (1-3)
+    ETL->>ETL: Standardize column names
+    ETL->>ETL: Handle N/A values
+    ETL->>ETL: Type conversion (int/float)
+    ETL->>ETL: Validate data quality
+    
+    Note over ETL,DB: Data Storage Phase
+    ETL->>DB: CREATE TABLE tracts
+    ETL->>DB: INSERT cleaned records
+    DB-->>ETL: Confirmation
+    
+    Note over User,UI: User Interaction Phase
+    User->>UI: Visit dashboard
+    UI->>UI: Render UI components
+    
+    User->>UI: Select State="Georgia"
+    UI->>API: GET /api/tracts?state=Georgia
+    API->>DB: SELECT * FROM tracts<br/>WHERE state='Georgia'
+    DB-->>API: Return rows (JSON)
+    API-->>UI: JSON response
+    UI->>UI: Generate choropleth map
+    UI-->>User: Display visualization
+    
+    Note over User,UI: Advanced Query
+    User->>UI: Filter by metric<br/>"Internet Access"
+    UI->>API: GET /api/metrics?<br/>metric=internet_access&state=Georgia
+    API->>DB: SELECT census_tract,<br/>internet_access_score<br/>FROM tracts<br/>WHERE state='Georgia'
+    DB-->>API: Return filtered data
+    API-->>UI: JSON payload
+    UI->>UI: Render scatter plot
+    UI-->>User: Show correlation analysis
+
