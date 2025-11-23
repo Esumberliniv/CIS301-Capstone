@@ -5,7 +5,7 @@
 
 **Student:** Emery  
 **Course:** CIS 301 - Capstone Project  
-**Institution:** AUC Data Science Institute  
+**Institution:** Clark Atlanta CIS301  
 **Date Completed:** November 19, 2025
 
 ---

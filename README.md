@@ -1,7 +1,7 @@
 # Equity in Focus: Visualizing Economic Inclusion with Mastercard IGS
 
 **CIS 301 Capstone Project**  
-**AUC Data Science Institute**
+**Clark Atlanta CIS301**
 
 ## 📊 Project Overview
 
@@ -137,11 +137,11 @@ streamlit run src/frontend/app.py
 
 ## 📄 License
 
-This project is developed for educational purposes as part of AUC's CIS 301 course.
+This project is developed for educational purposes as part of Clark Atlanta's CIS 301 course.
 
 ## 🙏 Acknowledgments
 
-- **AUC Data Science Institute** for curriculum design
+- **Clark Atlanta CIS301** for curriculum design
 - **Mastercard Center for Inclusive Growth** for dataset access
 - Course instructors and peer reviewers
 

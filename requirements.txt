@@ -1,5 +1,5 @@
 # Equity in Focus - Capstone Project Requirements
-# CIS 301 - AUC Data Science Institute
+# CIS 301 - Clark Atlanta CIS301
 # Python 3.9+
 
 # Backend (FastAPI)
