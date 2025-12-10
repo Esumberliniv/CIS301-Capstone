@@ -1,0 +1,10 @@
+# Streamlit Pages Configuration
+# Renames the main app page from "App" to "Home"
+
+[[pages]]
+path = "app.py"
+name = "Home"
+icon = "🏠"
+
+
+

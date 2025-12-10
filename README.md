@@ -25,6 +25,35 @@ Unlike traditional GDP metrics, the IGS provides normalized scores (1-100) that 
 3. **Drive Social Impact:** Provide actionable insights for policy interventions in underserved communities
 4. **Deliver Production-Ready Application:** Build scalable, maintainable full-stack system
 
+## 🔬 Research Questions
+
+This project analyzes the Mastercard Inclusive Growth Score (IGS) data to answer:
+
+1. **How do economic inclusion scores correlate with demographic and economic indicators?**
+   - Is there a relationship between IGS scores and median household income?
+   - Do communities with higher inclusion scores show better access to digital infrastructure?
+   - How does affordable housing availability impact overall inclusion scores?
+
+2. **What regional patterns exist in economic inclusion across the United States?**
+   - How do IGS scores vary across different states and counties?
+   - Are there geographic clusters of economically excluded communities?
+   - What spatial patterns emerge when analyzing opportunity gaps?
+
+3. **Which dimensions have the strongest impact on overall inclusion scores?**
+   - What are the key drivers of high vs. low IGS performance?
+   - How do different components (minority/women-owned businesses, internet access, housing, income) contribute to overall scores?
+   - Which metrics show the strongest correlations with economic opportunity?
+
+4. **How have economic inclusion scores evolved over time (2017-2024)?**
+   - Are communities improving their inclusion metrics year-over-year?
+   - What trends can be identified in economic opportunity gaps?
+   - Which states or counties show the most significant progress?
+
+5. **What factors predict successful economic inclusion implementation?**
+   - Can we identify characteristics of high-performing census tracts?
+   - What policy interventions might be most effective based on data patterns?
+   - How can policymakers use this data to target "investment deserts"?
+
 ## 🗂️ Repository Structure
 
 ```
@@ -68,11 +97,21 @@ CIS301-Capstone/
 
 ## 🚀 Milestones
 
-- [x] **Phase 1: Planning** (Week 1) - Repository setup, proposal, architecture design
-- [ ] **Phase 2: Development** (Weeks 2-3) - Backend API, database, ETL pipelines
-- [ ] **Phase 3: Frontend** (Week 4) - Streamlit dashboard, visualizations
-- [ ] **Phase 4: Integration & Testing** (Week 5) - End-to-end testing, deployment
-- [ ] **Phase 5: Finalization** (Week 6) - Documentation, presentation, submission
+- [x] **Phase 1: Planning** - Repository setup, proposal, architecture design
+- [x] **Phase 2: Development** - Backend API, database, ETL pipelines
+- [x] **Phase 3: Frontend** - Streamlit dashboard, visualizations
+- [x] **Phase 4: Integration & Testing** - End-to-end testing, system validation
+- [x] **Phase 5: Documentation** - Complete setup instructions and usage guide
+
+## ✅ Implementation Status
+
+All core features have been implemented:
+- ✅ ETL Pipeline (data cleaning, database loading, validation)
+- ✅ FastAPI Backend (6+ REST endpoints with full documentation)
+- ✅ SQLite Database (104 records across 4 states, 2017-2024)
+- ✅ Streamlit Dashboard (3 interactive visualization pages)
+- ✅ Integration Testing (automated test suite)
+- ✅ Comprehensive Documentation
 
 ## 📊 Dataset: Mastercard Inclusive Growth Score
 
@@ -101,33 +140,105 @@ CIS301-Capstone/
 - [Data Dictionary](docs/data-dictionary.md)
 - [Peer Review Template](docs/peer-review-template.md)
 
-## 🛠️ Setup Instructions (Development)
+## 🛠️ Setup Instructions
 
 ### Prerequisites
-```bash
-Python 3.9+
-pip (Python package manager)
-Git
-```
+- Python 3.9 or higher
+- pip (Python package manager)
+- Git
 
-### Installation (Coming Soon)
+### Installation
+
+1. **Clone the repository**
 ```bash
-# Clone repository
 git clone https://github.com/yourusername/CIS301-Capstone.git
 cd CIS301-Capstone
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run ETL pipeline
-python src/backend/etl.py
-
-# Start FastAPI backend
-uvicorn src.backend.main:app --reload
-
-# Start Streamlit dashboard (new terminal)
-streamlit run src/frontend/app.py
 ```
+
+2. **Install dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+3. **Run ETL Pipeline** (one-time setup)
+```bash
+# Option 1: Run complete ETL pipeline (recommended)
+python src/backend/etl/run_etl.py
+
+# Option 2: Run steps individually
+python src/backend/etl/data_cleaning.py
+python src/backend/etl/load_database.py
+```
+
+This will:
+- Clean the raw IGS CSV data
+- Create SQLite database at `data/igs_data.db`
+- Load 104 census tract records
+
+### Running the Application
+
+#### Start the Backend API
+
+In your first terminal:
+```bash
+python run_backend.py
+```
+
+The API will be available at:
+- **API Endpoints:** http://localhost:8000
+- **API Documentation:** http://localhost:8000/docs
+- **Alternative Docs:** http://localhost:8000/redoc
+
+#### Start the Dashboard
+
+In a second terminal:
+```bash
+python run_frontend.py
+```
+
+The dashboard will open automatically at:
+- **Dashboard:** http://localhost:8501
+
+### Testing the System
+
+Run integration tests to verify everything is working:
+```bash
+python test_system.py
+```
+
+## 📊 Using the Dashboard
+
+### Available Pages
+
+1. **📍 Equity Map**
+   - Interactive visualizations of IGS scores by geography
+   - Filter by state, county, and year
+   - View bar charts and distribution plots
+   - Download data as CSV
+
+2. **📊 Opportunity Gap Analysis**
+   - Compare specific census tracts against state/county averages
+   - Identify opportunity gaps in key metrics
+   - Visual gap analysis with color-coded indicators
+   - See strongest and weakest areas for targeted interventions
+
+3. **🔗 Correlation Explorer**
+   - Analyze relationships between different metrics
+   - Scatter plots with trendlines
+   - Correlation heatmaps
+   - Quadrant analysis for pattern identification
+
+### Available API Endpoints
+
+- `GET /api/health` - Health check and system status
+- `GET /api/tracts` - Get census tracts with filters
+- `GET /api/tracts/{fips_code}` - Get specific tract by FIPS code
+- `GET /api/states` - List all available states
+- `GET /api/metrics` - Get specific metric values
+- `GET /api/statistics` - Calculate statistical aggregations
+- `GET /api/correlations` - Compute correlations between metrics
+
+Full API documentation available at http://localhost:8000/docs
 
 ## 📝 Ethical Considerations
 
@@ -147,5 +258,6 @@ This project is developed for educational purposes as part of Clark Atlanta's CI
 
 ---
 
-**Last Updated:** November 19, 2025
+**Last Updated:** November 29, 2025  
+**Status:** ✅ Fully Implemented
 

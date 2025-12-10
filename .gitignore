@@ -55,8 +55,11 @@ data/processed/*.csv
 !data/raw/IGS-score.csv
 
 # Google Cloud credentials
+credentials/
 *.json
 !package.json
+gcs-key.json
+service-account.json
 
 # Logs
 *.log
